@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeke's Ken Eat Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+        
+        .video-container {
+            position: relative;
+            max-width: 100%;
+            max-height: 100vh;
+            aspect-ratio: 9/16;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="menuVideo" autoplay muted loop playsinline>
+            <source src="menu-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button onclick="togglePlay()">▶ Play/Pause</button>
+            <button onclick="muteToggle()">🔊 Sound</button>
+        </div>
+    </div>
+    
+    <script>
+        const video = document.getElementById('menuVideo');
+        const playBtn = document.querySelector('button:first-child');
+        const soundBtn = document.querySelector('button:last-child');
+        
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                playBtn.textContent = '⏸ Pause';
+            } else {
+                video.pause();
+                playBtn.textContent = '▶ Play';
+            }
+        }
+        
+        function muteToggle() {
+            video.muted = !video.muted;
+            soundBtn.textContent = video.muted ? '🔇 Muted' : '🔊 Sound';
+        }
+        
+        // Update button text on video state change
+        video.addEventListener('play', () => {
+            playBtn.textContent = '⏸ Pause';
+        });
+        
+        video.addEventListener('pause', () => {
+            playBtn.textContent = '▶ Play';
+        });
+        
+        // Initialize
+        soundBtn.textContent = '🔇 Muted';
+    </script>
+</body>
+</html>
