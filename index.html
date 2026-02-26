@@ -4,55 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeke's Ken Eat Menu</title>
-    <style>
-        /* Improved styling for the video player */
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-            overflow: hidden;
-            background-color: #000;
-        }
-        video {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        .error-message {
-            color: red;
-            font-weight: bold;
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
     <h1>Welcome to Zeke's Ken Eat Menu</h1>
-    <div class="video-container">
-        <video id="videoPlayer" controls>
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="error-message" id="errorMessage">Error: Video cannot be played!</div>
-    </div>
-    <script>
-        const videoPlayer = document.getElementById('videoPlayer');
-        const errorMessage = document.getElementById('errorMessage');
-
-        videoPlayer.addEventListener('error', function() {
-            errorMessage.style.display = 'block';
-        });
-
-        videoPlayer.addEventListener('loadeddata', function() {
-            errorMessage.style.display = 'none';
-        });
-    </script>
+    <video controls>
+        <source src="menu-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </body>
 </html>
