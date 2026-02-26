@@ -4,13 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeke's Ken Eat Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+        }
+        
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Zeke's Ken Eat Menu</h1>
-    <video controls autoplay loop>
-        <source src="path_to_video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <p>Enjoy our tasty menu!</p>
+    <div class="video-container">
+        <video id="menuVideo" autoplay muted loop playsinline>
+            <source src="menu-video.mp4" type="video/mp4">
+        </video>
+        <div class="controls">
+            <button onclick="togglePlay()">▶ Play/Pause</button>
+        </div>
+    </div>
+    
+    <script>
+        const video = document.getElementById('menuVideo');
+        const playBtn = document.querySelector('button');
+        
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                playBtn.textContent = '⏸ Pause';
+            } else {
+                video.pause();
+                playBtn.textContent = '▶ Play';
+            }
+        }
+        
+        video.addEventListener('play', () => {
+            playBtn.textContent = '⏸ Pause';
+        });
+        
+        video.addEventListener('pause', () => {
+            playBtn.textContent = '▶ Play';
+        });
+    </script>
 </body>
 </html>
